@@ -13,10 +13,19 @@ class Category(models.Model):
         max_length=255,
         verbose_name="Описание категории"
     )
-    order = IntegerField(unique=True, editable=False)
+    order = IntegerField(
+        default=0,
+        verbose_name = "Порядок категории"
+    )
 
     class Meta:
         ordering = ['order']
+        verbose_name = "категория"
+        verbose_name_plural = "Категории"
+
+    def __str__(self):
+        return self.name
+
 
 class Dish(models.Model):
     name = models.CharField(
@@ -36,7 +45,13 @@ class Dish(models.Model):
     )
     price = models.IntegerField(verbose_name="Цена блюда")
     image = ImageField(verbose_name="Изображение блюда")
-    category = ForeignKey(Category, related_name="categories", on_delete=models.CASCADE)
+    category = ForeignKey(
+        Category,
+        related_name="categories",
+        null=True,
+        on_delete=models.CASCADE,
+        verbose_name="Категория"
+    )
 
     class Meta:
         verbose_name = "блюдо"

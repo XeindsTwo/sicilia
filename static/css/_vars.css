@@ -1,0 +1,15 @@
+:root {
+    --white: #ffffff;
+    --bg: #f7f4ee;
+    --surface: #ffffff;
+    --surface-2: #f1ede5;
+    --text: #1f241d;
+    --muted: #6f7669;
+    --green-900: #1f2a1d;
+    --green-800: #2d3a2a;
+    --green-700: #3f523a;
+    --green-600: #556b4d;
+    --green-200: #cfd7c8;
+    --accent: #6a8f56;
+    --accent-strong: #4e6f3e;
+}
