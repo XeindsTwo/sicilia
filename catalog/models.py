@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models import ImageField, ForeignKey
-from django.db.models.fields import CharField, IntegerField
+from django.db.models.fields import CharField, IntegerField, BooleanField
 
 
 class Category(models.Model):
@@ -15,7 +15,7 @@ class Category(models.Model):
     )
     order = IntegerField(
         default=0,
-        verbose_name = "Порядок категории"
+        verbose_name="Порядок категории"
     )
 
     class Meta:
@@ -34,7 +34,7 @@ class Dish(models.Model):
     )
     description = models.CharField(
         max_length=255,
-        verbose_name="Название блюда"
+        verbose_name="Описание блюда"
     )
     weight = models.IntegerField(
         verbose_name="Вес блюда",
@@ -43,6 +43,7 @@ class Dish(models.Model):
             MaxValueValidator(20000)
         ]
     )
+    is_available = BooleanField(default=True, verbose_name="Активно блюдо")
     price = models.IntegerField(verbose_name="Цена блюда")
     image = ImageField(verbose_name="Изображение блюда")
     category = ForeignKey(
@@ -52,6 +53,9 @@ class Dish(models.Model):
         on_delete=models.CASCADE,
         verbose_name="Категория"
     )
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = "блюдо"
