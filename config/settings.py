@@ -1,7 +1,7 @@
 import os.path
 from pathlib import Path
 
-from django.conf.global_settings import STATICFILES_DIRS
+from django.conf.global_settings import STATICFILES_DIRS, AUTH_USER_MODEL
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,7 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'image_uploader_widget',
-    'catalog'
+    'catalog',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -90,3 +91,5 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
